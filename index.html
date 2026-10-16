@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diagnóstico ENEM</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+body{font-family:'Plus Jakarta Sans',sans-serif;margin:0;min-height:100vh;overflow-x:hidden;background:linear-gradient(-45deg,#fff,#f8fafc,#e0f2fe,#f0f9ff,#fff);background-size:400% 400%;animation:bg 15s ease infinite}
+@keyframes bg{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.03)}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+#app{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:16px}
+p{margin:0}
+.prog{width:100%;max-width:32rem;height:8px;background:#e2e8f0;border-radius:99px;overflow:hidden;margin-bottom:16px}
+.prog>i{display:block;height:100%;background:#0A1128;border-radius:99px;transition:width .5s}
+.card{width:100%;max-width:32rem;min-height:500px;border-radius:1.5rem;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 25px 50px -12px rgba(0,0,0,.25);animation:fade .35s}
+.dark{background:#0A1128;border:1px solid rgba(96,165,250,.2);box-shadow:0 0 40px rgba(96,165,250,.15);padding:20px}
+.blue{background:#1E3A8A;padding:32px 24px;cursor:pointer}
+.red{background:#EF4444;padding:32px 20px;cursor:pointer}
+.inner{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:18px;width:100%}
+.emo{font-size:3rem;line-height:1}
+h1,h2{margin:0;color:#BFDBFE;text-shadow:0 0 10px rgba(96,165,250,.6),0 0 20px rgba(96,165,250,.4);line-height:1.25;font-weight:800}
+h1{font-size:1.25rem}h2{font-size:1.125rem}
+.sub{color:rgba(255,255,255,.9);font-size:.9rem;font-weight:500;line-height:1.45}
+.sub b,.txt b{color:#fff}
+.micro{color:rgba(255,255,255,.6);font-size:.8rem;font-weight:500}
+.opts{width:100%;display:flex;flex-direction:column;gap:10px}
+.opt{display:flex;gap:12px;align-items:center;text-align:left;width:100%;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.1);border-radius:1rem;padding:12px;color:#fff;font:inherit;font-weight:500;font-size:.9rem;line-height:1.3;cursor:pointer;transition:all .2s}
+.opt:hover{background:rgba(255,255,255,.2);transform:translateY(-2px)}
+.opt:active{transform:scale(.97)}
+.opt .e{font-size:1.6rem}
+input{width:100%;background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.1);border-radius:.9rem;padding:12px 16px;color:#fff;font:inherit;font-size:1rem;text-align:center;outline:none}
+input::placeholder{color:rgba(255,255,255,.6)}
+input:focus{box-shadow:0 0 0 2px rgba(255,255,255,.3)}
+.fields{width:100%;display:flex;flex-direction:column;gap:10px}
+.btn{width:100%;border:0;border-radius:.9rem;padding:15px;font:inherit;font-weight:800;font-size:1rem;color:#fff;cursor:pointer;box-shadow:0 20px 25px -5px rgba(0,0,0,.2);transition:transform .15s}
+.btn:active{transform:scale(.97)}
+.btn.off{background:rgba(255,255,255,.1);color:rgba(255,255,255,.3);cursor:not-allowed;box-shadow:none}
+.btn.go{background:linear-gradient(90deg,#3B82F6,#7C3AED)}
+@keyframes glow{0%,100%{box-shadow:0 0 0 0 rgba(255,87,34,.55)}50%{box-shadow:0 0 0 12px rgba(255,87,34,0)}}
+.btn.fire{background:linear-gradient(90deg,#FF5722,#FF2E2E);font-size:1.05rem;animation:glow 1.8s infinite}
+.white{color:#fff}
+.big{font-size:1.45rem;font-weight:800;line-height:1.25;color:#fff;margin:0}
+.txt{color:#fff;font-size:1rem;font-weight:600;line-height:1.5}
+.bar{width:100%;height:8px;background:rgba(255,255,255,.25);border-radius:99px;overflow:hidden;border:1px solid rgba(255,255,255,.1)}
+.bar>i{display:block;height:100%;width:0;background:#fff}
+.pill{width:100%;background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.1);border-radius:.9rem;padding:11px 14px;color:#fff;font-weight:800;font-size:.95rem}
+.cd{width:100%;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.1);border-radius:1.1rem;padding:14px}
+.cd p{color:#fff;font-weight:800;margin-bottom:10px}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.grid4 div{background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.1);border-radius:.6rem;padding:8px 2px;color:#fff}
+.grid4 b{display:block;font-size:1.4rem;font-weight:800}
+.grid4 span{font-size:.6rem;font-weight:800;color:rgba(255,255,255,.7)}
+.ov{position:fixed;inset:0;z-index:100;background:#F9FAFB;display:flex;align-items:center;justify-content:center;padding:16px;overflow-y:auto}
+.white-card{width:100%;max-width:24rem;background:#fff;border-radius:1rem;box-shadow:0 25px 50px -12px rgba(0,0,0,.25);overflow:hidden;animation:fade .35s}
+.white-card .top{padding:14px;text-align:center;border-bottom:1px solid #f3f4f6;font-weight:800;letter-spacing:.12em;color:#111827}
+.white-card .body{padding:20px;display:flex;flex-direction:column;gap:14px;text-align:center}
+.white-card h3{margin:0;font-size:1.3rem;font-weight:800;color:#1f2937;line-height:1.3}
+.white-card p{color:#4b5563;font-size:.9rem;line-height:1.45}
+.white-card img{width:100%;display:block}
+.sim{font-size:.72rem;color:#6b7280;font-weight:700}
+.fake{background:#F5F8FF;padding:22px 18px;text-align:left}
+.fake .h{font-weight:800;color:#1e3a8a;font-size:.8rem;letter-spacing:.08em}
+.fake .c{font-weight:800;font-size:1.1rem;color:#111827;margin:4px 0 14px}
+.fake .r{display:flex;justify-content:space-between;align-items:center;padding:9px 10px;border-radius:.6rem;font-size:.85rem;color:#9ca3af;background:#fff;margin-bottom:6px}
+.fake .r.me{background:#dcfce7;color:#14532d;font-weight:800;border:1px solid #86efac}
+.vsl{width:100%;max-width:400px;margin:0 auto}
+@media(min-width:768px){.dark{padding:48px}h1{font-size:1.875rem}h2{font-size:1.6rem}.sub{font-size:1.1rem}.opt{font-size:1.1rem;padding:16px}.emo{font-size:4rem}}
+</style>
+
+<!-- Rastreamento Universal -->
+<script>
+(function(){fetch("https://zgvqgbcehjpfjxmnyvxq.supabase.co/functions/v1/track-pixel",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({tracking_id:"c8475ab9-fe06-4453-b423-230a5d11a010",url:location.href,referrer:document.referrer}),keepalive:!0}).catch(function(){})})();
+</script>
+<!-- TikTok Pixel -->
+<script>
+!function (w, d, t) {
+  w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(
+var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script")
+;n.type="text/javascript",n.async=!0,n.src=r+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)};
+  ttq.load('D5MPK4BC77U6NESDOB0G');
+  ttq.page();
+}(window, document, 'ttq');
+</script>
+<!-- Meta Pixel -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1223307489902324');
+fbq('track', 'PageView');
+</script>
+<!-- UTMs (Utmify) -->
+<script src="https://cdn.utmify.com.br/scripts/utms/latest.js" data-utmify-prevent-subids async defer></script>
+</head>
+<body>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1223307489902324&ev=PageView&noscript=1"/></noscript>
+<div id="app"></div>
+
+<script>
+/* ================== CONFIGURAÇÕES (mude aqui) ================== */
+const CONFIG = {
+  DATA_ENEM: '2026-11-08T13:30:00-03:00', // 1º dia do ENEM 2026 (08/11, 13h30 de Brasília)
+  DATA_ENEM_TXT: '08/11/2026',
+  EMPATIA_MS: 4000,   // barra da tela de empatia (etapa 5)
+  URGENCIA_MS: 6000,  // barra da tela de urgência (etapa 7)
+  VSL_ID: '6a72609277fc86dc15571a8c',
+  VSL_OID: '76b93061-bf22-466e-ab7a-c04c213b8810',
+  PROVA_SOCIAL: 'Mais de 12.000'
+};
+/* =============================================================== */
+
+const S = { name: '', course: '' };
+let idx = 0, tok = 0, timers = [];
+const app = document.getElementById('app');
+const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const cap = s => s.charAt(0).toUpperCase() + s.slice(1);
+const nome = () => esc(cap((S.name.trim().split(/\s+/)[0]) || ''));
+const cursoEm = () => S.course.trim() ? 'em ' + esc(S.course.trim()) : 'no curso dos seus sonhos';
+const track = (n, p) => { try { fbq('trackCustom', n, p || {}); } catch (e) {} try { ttq.track(n, p || {}); } catch (e) {} };
+
+/* ---------- molde de pergunta ---------- */
+const Q = (emoji, q, sub, opts) => ({
+  bar: true, cls: 'dark',
+  html: `<div class="inner"><div class="emo">${emoji}</div><h2>${q}</h2>${sub ? `<p class="sub">${sub}</p>` : ''}
+  <div class="opts">${opts.map(o => `<button class="opt" data-o><span class="e">${o[0]}</span><span>${o[1]}</span></button>`).join('')}</div></div>`,
+  mount() { const my = tok; document.querySelectorAll('[data-o]').forEach(b => b.onclick = () => { if (my !== tok) return; b.style.background = 'rgba(96,165,250,.35)'; setTimeout(() => { if (my === tok) next(); }, 220); }); }
+});
+
+/* ---------- barra animada + clique pula ---------- */
+function runBar(card, ms) {
+  const my = tok, fill = card.querySelector('.bar>i'), t0 = Date.now();
+  const go = () => { if (my === tok) next(); };
+  setTimeout(() => { card.onclick = go; }, 700);          // toque pula (após 0,7s, evita toque duplo)
+  const upd = () => {
+    if (my !== tok) return;
+    const p = Math.min((Date.now() - t0) / ms, 1);
+    fill.style.width = (p * 100) + '%';
+    if (p >= 1) go();
+  };
+  timers.push(setInterval(upd, 60));
+  setTimeout(go, ms + 400);                                // garantia: avança mesmo se o navegador pausar timers
+  document.addEventListener('visibilitychange', upd);
+}
+
+/* ---------- contador ao vivo ---------- */
+function startCountdown() {
+  const alvo = new Date(CONFIG.DATA_ENEM);
+  const el = id => document.getElementById(id);
+  const tick = () => {
+    let s = Math.max(0, Math.floor((alvo - new Date()) / 1000));
+    const d = Math.floor(s / 86400); s %= 86400;
+    const h = Math.floor(s / 3600); s %= 3600;
+    const m = Math.floor(s / 60); s %= 60;
+    el('cd-d').textContent = d; el('cd-h').textContent = h; el('cd-m').textContent = m; el('cd-s').textContent = s;
+  };
+  tick(); timers.push(setInterval(tick, 1000));
+}
+
+/* ---------- ETAPAS ---------- */
+const steps = [
+/* 1 - captura */
+() => ({ cls: 'dark', html: `<div class="inner"><div class="emo">📚</div>
+  <h1>⚠️ Pare de perder pontos no ENEM por causa de texto gigante</h1>
+  <p class="sub">Tem um jeito de ler <b>a prova inteira sem travar e sem estourar o tempo</b>. A maioria dos estudantes nunca ficou sabendo. Faça o diagnóstico de 2 minutos e descubra o seu.</p>
+  <p class="sub">Pra montar o seu plano, eu preciso de 2 informações. Sem isso, o resultado sai genérico e <b>não funciona pra quem sonha com o seu curso</b>. 👇</p>
+  <div class="fields"><input id="in-n" type="text" placeholder="Como você se chama?" autocomplete="given-name"><input id="in-c" type="text" placeholder="Qual curso você vai conquistar? (ex: Medicina, Direito)"></div>
+  <button class="btn off" id="go" disabled>QUERO MEU DIAGNÓSTICO GRÁTIS →</button>
+  <p class="micro">🔒 Leva menos de 2 minutos. ${CONFIG.PROVA_SOCIAL} estudantes já passaram por aqui.</p></div>`,
+  mount() {
+    const n = document.getElementById('in-n'), c = document.getElementById('in-c'), b = document.getElementById('go');
+    const chk = () => { const ok = n.value.trim().length >= 2 && c.value.trim().length >= 2; b.disabled = !ok; b.className = 'btn ' + (ok ? 'go' : 'off'); };
+    n.oninput = c.oninput = chk;
+    b.onclick = () => { S.name = n.value.trim(); S.course = c.value.trim(); track('Lead'); try { fbq('track', 'Lead'); } catch (e) {} next(); };
+  } }),
+
+/* 2 */
+() => Q('😰', 'Seja sincera: você abre a prova, vê aquele <b>textão de 30 linhas</b>... e o que passa na sua cabeça?',
+  'Quanto mais honesta a resposta, mais preciso o seu diagnóstico. 👇',
+  [['📖', '“Meu Deus, vou ficar exausta antes de chegar na metade da prova”'], ['😵', '“Leio, leio e parece que nada entra. Não sei nem por onde começar”'], ['⏱️', '“Já começo a entrar em pânico com o relógio: não vai dar tempo”'], ['😅', '“Leio até rápido, mas erro a questão mesmo assim”']]),
+
+/* 3 */
+() => Q('🤷‍♀️', 'Agora me conta: na hora de <b>marcar a resposta</b>, qual dessas te destrói?',
+  'Cada ponto perdido aqui pode ser a diferença entre passar e ficar de fora. 👇',
+  [['🤡', '“Fico entre duas alternativas, marco a errada... e descubro depois”'], ['🤦‍♀️', '“Termino o texto e já esqueci o que a questão pedia. Volto tudo de novo”'], ['🏃‍♀️', '“Chuto um monte no final porque o tempo acabou e eu nem li direito”'], ['😬', '“Acerto, mas só porque demorei demais e sacrifiquei o resto da prova”']]),
+
+/* 4 */
+() => Q('🧠', 'Você estudou o ano inteiro... e na prova a banca <b>te enrola com as alternativas</b>. Isso já aconteceu com você?',
+  'Spoiler: <b>não é falta de estudo.</b> Tem um motivo, e a gente vai chegar nele. 👇',
+  [['😤', '“Direto! Parece que fazem de propósito pra me derrubar”'], ['😕', '“Com frequência. Eu sei a matéria, mas caio na pegadinha”'], ['🤨', '“Às vezes, geralmente quando o texto é longo”'], ['😅', '“Quase nunca, mas quando acontece, me custa a questão inteira”']]),
+
+/* 5 - empatia (barra) */
+() => ({ cls: 'blue', html: `<div class="inner" style="gap:26px"><div class="emo" style="font-size:5rem">😔</div>
+  <p class="big">Eu sei exatamente o que você está sentindo, ${nome()}. 💔<br>Você estuda, se esforça, e o textão <u>drena toda a sua energia</u> enquanto o relógio corre contra você.</p>
+  <p class="txt">E a pior parte: <b>você não é a única.</b> ${CONFIG.PROVA_SOCIAL} estudantes me falaram a mesma coisa.</p>
+  <div style="width:100%"><div class="bar"><i></i></div><p class="micro" style="margin-top:12px">Estou analisando suas respostas... ⏳ (toque para continuar)</p></div></div>`,
+  mount(card) { runBar(card, CONFIG.EMPATIA_MS); } }),
+
+/* 6 */
+() => Q('⏳', 'No último ENEM ou simulado, <b>quantas questões você teve que chutar</b> porque o tempo acabou?',
+  'Cada questão chutada é um ponto que você <b>já tinha estudado pra acertar</b>. 👇',
+  [['😭', '“Várias. Cheguei no final sem tempo nem de ler o enunciado”'], ['😞', '“Algumas. Eu estava tão cansada que fui no ‘tanto faz’”'], ['😐', '“Poucas, mas foram as que decidiram minha nota”'], ['😅', '“Quase nenhuma, mas passei a prova inteira no desespero do relógio”']]),
+
+/* 7 - urgência (barra + contador) */
+() => ({ cls: 'red', html: `<div class="inner" style="gap:16px"><div class="emo">⏰</div>
+  <p class="big">O relógio não para. E o ENEM também não.</p>
+  <div style="width:100%;display:flex;flex-direction:column;gap:8px"><div class="pill">📅 Hoje: ${new Date().toLocaleDateString('pt-BR')}</div><div class="pill">🎯 Dia da prova: ${CONFIG.DATA_ENEM_TXT}</div></div>
+  <div class="cd"><p>Tempo que ainda te resta pra mudar sua nota:</p><div class="grid4"><div><b id="cd-d">0</b><span>DIAS</span></div><div><b id="cd-h">0</b><span>HORAS</span></div><div><b id="cd-m">0</b><span>MIN</span></div><div><b id="cd-s">0</b><span>SEG</span></div></div></div>
+  <p class="txt">Eu também <b>joguei pontos fora</b> lendo texto inútil e chutando as últimas questões no desespero. Até descobrir a verdade: <b>o problema nunca foi falta de estudo.</b> Era falta de estratégia pra ler só o que importa. 💡</p>
+  <div style="width:100%"><div class="bar"><i></i></div><p class="micro" style="margin-top:10px;color:rgba(255,255,255,.8)">Preparando seu diagnóstico... ⏳ (toque para continuar)</p></div></div>`,
+  mount(card) { startCountdown(); runBar(card, CONFIG.URGENCIA_MS); } }),
+
+/* 8 */
+() => Q('⚡', 'Imagina descobrir a resposta certa <b>batendo o olho em 2 ou 3 palavras do enunciado</b>... sem ler o textão inteiro.<br><br>O que isso mudaria na sua prova?',
+  'Isso existe. E a banca <b>torce pra você nunca descobrir.</b> 👇',
+  [['😍', '“Salvaria minha nota, e ainda sobraria tempo pra redação!”'], ['😲', '“Seria um sonho: eu acabaria com as rasteiras das pegadinhas”'], ['🤔', '“Eu quero muito, mas será que isso funciona de verdade?”'], ['🔥', '“Eu precisava disso ontem. Quero ver como funciona”']]),
+
+/* 9 */
+() => Q('🎯', 'Teste da verdade: se o ENEM fosse <b>amanhã</b>, com o jeito que você resolve questões hoje...<br><br>Você teria energia pra encarar <b>90 questões + redação?</b>',
+  'Seja honesta. Ninguém vai ver, só o seu diagnóstico. 👇',
+  [['😰', '“Nem pensar. Minha mente fritaria na metade da prova”'], ['😬', '“Eu tentaria, mas o tempo estouraria antes de eu terminar”'], ['😳', '“Até aguentaria, mas o cansaço me faria errar questão boba”'], ['😅', '“Aguentaria, mas saindo da prova destruída (e sem redação boa)”']]),
+
+/* 10 */
+() => Q('🎉', `${nome()}, fecha os olhos por 3 segundos. 😌<br><br>Você parou de lutar contra o relógio, resolveu a prova com estratégia... e abriu a lista de aprovados ${cursoEm()}.<br><br><b>Seu nome está lá.</b> Como você se sente?`,
+  'Guarda essa sensação. É por ela que a gente está aqui. 👇',
+  [['😍', '“O dia mais feliz da minha vida!”'], ['😭', '“Eu choraria de emoção e de alívio, depois de tanto sacrifício”'], ['💝', '“Eu finalmente me sentiria recompensada por cada madrugada de estudo”'], ['🌟', '“Seria a prova de que valeu a pena não desistir”']]),
+
+/* 11 - aprovação (tela cheia) */
+() => ({ raw: true, html: `<div class="ov"><div class="white-card"><div class="top">${esc(S.name.trim().toUpperCase())}</div>
+  <img alt="Sua aprovação" src="assets/teladeaprovacao.webp" onerror="this.outerHTML=window.FAKE()">
+  <div class="body"><span class="sim">Simulação do seu grande dia ✨</span>
+  <h3>🎉 Parabéns, ${nome()}! Você passou ${cursoEm()}!</h3>
+  <p>É assim que o seu nome pode aparecer no dia do resultado. <b>Falta pouco pra isso ser real.</b></p>
+  <button class="btn go" id="nx">QUERO VIVER ISSO DE VERDADE →</button></div></div></div>`,
+  mount() { document.getElementById('nx').onclick = next; } }),
+
+/* 12 - virada */
+() => ({ cls: 'dark', html: `<div class="inner" style="gap:20px"><div class="emo">👀</div>
+  <h2>${nome()}, agora vou te falar a real.</h2>
+  <p class="sub" style="text-align:left;width:100%">Se você continuar do jeito que está...<br><br>❌ lendo textão até cansar<br>❌ caindo nas pegadinhas da banca<br>❌ perdendo a briga contra o relógio<br><br><b>...aquela tela de aprovação ${cursoEm()} vai continuar sendo só um sonho.</b> 💔</p>
+  <p class="sub">Mas <b>não precisa ser assim.</b><br><br>Eu fiz <b>140 acertos</b> e passei na <b>Federal</b> direto do ensino médio usando um <b>padrão de gatilhos nas questões</b>.<br><br>E eu vou te mostrar <b>exatamente qual é.</b></p>
+  <button class="btn fire" id="nx">SIM, QUERO VER O PADRÃO AGORA →</button>
+  <p class="micro">▶️ Vídeo rápido, direto ao ponto. Sem enrolação.</p></div>`,
+  mount() { document.getElementById('nx').onclick = next; } }),
+
+/* 13 - VSL */
+() => ({ cls: 'dark', html: `<div class="inner" style="gap:18px;justify-content:flex-start;padding-top:8px">
+  <p class="txt">${nome()}, assista até o final: <b>seu presente especial é liberado no vídeo.</b> 🎁</p>
+  <p class="sub">E foi assim que eu ajudei mais de 12.000 pessoas pelo Brasil todo a identificar a resposta certa no ENEM em segundos.</p>
+  <div class="vsl" id="vsl-box"></div>
+  <p class="micro">🔊 Ative o som para não perder nada.</p></div>`,
+  mount() {
+    const box = document.getElementById('vsl-box');
+    box.innerHTML = `<vturb-smartplayer id="vid-${CONFIG.VSL_ID}" style="display:block;margin:0 auto;width:100%;max-width:400px"></vturb-smartplayer>`;
+    const s = document.createElement('script');
+    s.src = `https://scripts.converteai.net/${CONFIG.VSL_OID}/players/${CONFIG.VSL_ID}/v4/player.js`;
+    s.async = true; document.head.appendChild(s);
+  } })
+];
+
+/* ---------- motor ---------- */
+function render() {
+  tok++; timers.forEach(clearInterval); timers = [];
+  const st = steps[idx]();
+  const n = idx + 1;
+  if (st.raw) { app.innerHTML = st.html; }
+  else {
+    const prog = (st.bar || n === 5 || n === 7) && n >= 2 && n <= 10
+      ? `<div class="prog"><i style="width:${((n - 1) / 12 * 100).toFixed(2)}%"></i></div>` : '';
+    app.innerHTML = prog + `<div class="card ${st.cls}">${st.html}</div>`;
+  }
+  window.scrollTo(0, 0);
+  if (st.mount) st.mount(app.querySelector('.card'));
+}
+function next() { if (idx < steps.length - 1) { idx++; track('QuizEtapa', { etapa: idx + 1 }); render(); } }
+
+/* mock da tela de aprovação (usado se assets/teladeaprovacao.webp não existir) */
+window.FAKE = () => `<div class="fake"><div class="h">🎓 LISTA DE APROVADOS</div><div class="c">${S.course.trim() ? esc(S.course.trim()) : 'Curso dos seus sonhos'}</div>
+  <div class="r"><span>1. Candidato(a)</span><span>—</span></div><div class="r me"><span>2. ${esc(S.name.trim().toUpperCase())}</span><span>✔ APROVADO(A)</span></div><div class="r"><span>3. Candidato(a)</span><span>—</span></div></div>`;
+
+render();
+</script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+QUIZ ENEM - COPY AGRESSIVA (13 etapas, arquivo único)
+
+COMO USAR
+1) Descompacte o zip.
+2) Suba a pasta inteira no Netlify (arrastar e soltar) ou na Vercel. Ou abra o index.html no navegador para testar.
+3) (Opcional) Coloque teladeaprovacao.webp dentro da pasta assets/.
+
+ETAPAS
+1 Captura nome+curso | 2,3,4 Perguntas de dor | 5 Empatia (barra 4s) | 6 Pergunta (chute)
+7 Urgência + contador ao vivo (barra 6s) | 8 Promessa | 9 Energia mental | 10 Visualização
+11 Tela de aprovação | 12 Virada pra oferta | 13 VSL (player VTurb)
+
+O QUE MUDAR (topo do <script> do index.html, bloco CONFIG)
+- DATA_ENEM / DATA_ENEM_TXT: 1º dia do ENEM 2026 = 08/11/2026 às 13h30 (já configurado)
+- EMPATIA_MS / URGENCIA_MS: tempo das barras em milissegundos (4000 = 4s)
+- VSL_ID / VSL_OID: IDs do player VTurb (já configurados)
+- PROVA_SOCIAL: "Mais de 12.000"
+
+OBSERVAÇÕES
+- Pixels mantidos do quiz original: Meta (1223307489902324), TikTok (D5MPK4BC77U6NESDOB0G), rastreamento Supabase e UTMs.
+- O botão "APLICAR DESCONTO" aparece dentro do player (configurado no painel do VTurb, aos 508s).
+- Se o player não carregar, cole o código de incorporação original do VTurb dentro do <div id="vsl-box"> (etapa 13).
+- As frases "140 acertos / passei na Federal" e "12.000 pessoas" precisam ser reais e comprováveis.

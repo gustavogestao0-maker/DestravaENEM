@@ -1,0 +1,5 @@
+IMAGEM DA TELA DE APROVAÇÃO (etapa 11)
+Coloque aqui o arquivo: teladeaprovacao.webp
+(ele estava na pasta Quiz_files do quiz original).
+Se o arquivo não estiver aqui, o quiz mostra automaticamente uma "lista de aprovados" simulada
+com o nome e o curso da pessoa.
