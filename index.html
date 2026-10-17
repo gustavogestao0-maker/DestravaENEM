@@ -73,19 +73,6 @@ input:focus{box-shadow:0 0 0 2px rgba(255,255,255,.3)}
 </style>
 
 <!-- Rastreamento Universal -->
-<script>
-(function(){fetch("https://zgvqgbcehjpfjxmnyvxq.supabase.co/functions/v1/track-pixel",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({tracking_id:"c8475ab9-fe06-4453-b423-230a5d11a010",url:location.href,referrer:document.referrer}),keepalive:!0}).catch(function(){})})();
-</script>
-<!-- TikTok Pixel -->
-<script>
-!function (w, d, t) {
-  w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(
-var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script")
-;n.type="text/javascript",n.async=!0,n.src=r+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)};
-  ttq.load('D5MPK4BC77U6NESDOB0G');
-  ttq.page();
-}(window, document, 'ttq');
-</script>
 <!-- Meta Pixel -->
 <script>
 !function(f,b,e,v,n,t,s)
@@ -96,14 +83,14 @@ n.queue=[];t=b.createElement(e);t.async=!0;
 t.src=v;s=b.getElementsByTagName(e)[0];
 s.parentNode.insertBefore(t,s)}(window, document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '1223307489902324');
+fbq('init', '1142794418184102');
 fbq('track', 'PageView');
 </script>
 <!-- UTMs (Utmify) -->
-<script src="https://cdn.utmify.com.br/scripts/utms/latest.js" data-utmify-prevent-subids async defer></script>
+<script src="https://cdn.utmify.com.br/scripts/utms/latest.js" data-utmify-prevent-xcod-sck data-utmify-prevent-subids async defer></script>
 </head>
 <body>
-<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1223307489902324&ev=PageView&noscript=1"/></noscript>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1142794418184102&ev=PageView&noscript=1"/></noscript>
 <div id="app"></div>
 
 <script>
@@ -113,8 +100,8 @@ const CONFIG = {
   DATA_ENEM_TXT: '08/11/2026',
   EMPATIA_MS: 4000,   // barra da tela de empatia (etapa 5)
   URGENCIA_MS: 6000,  // barra da tela de urgência (etapa 7)
-  VSL_ID: '6a72609277fc86dc15571a8c',
-  VSL_OID: '76b93061-bf22-466e-ab7a-c04c213b8810',
+  VSL_ID: '6ad2dda5a884ed0eb8112934',
+  VSL_OID: '418e6ea4-ba67-43b1-bf6b-bb30e54dd321',
   PROVA_SOCIAL: 'Mais de 12.000'
 };
 /* =============================================================== */
@@ -170,8 +157,8 @@ function startCountdown() {
 const steps = [
 /* 1 - captura */
 () => ({ cls: 'dark', html: `<div class="inner"><div class="emo">📚</div>
-  <h1>⚠️ Pare de perder pontos no ENEM por causa de texto gigante</h1>
-  <p class="sub">Tem um jeito de ler <b>a prova inteira sem travar e sem estourar o tempo</b>. A maioria dos estudantes nunca ficou sabendo. Faça o diagnóstico de 2 minutos e descubra o seu.</p>
+  <h1>⚠️ Você NÃO precisava ler o textão do ENEM pra acertar a questão</h1>
+  <p class="sub">Existe um macete de <b>palavras-chave</b> que resolve questão de Linguagens em <b>15 segundos</b>, enquanto a maioria gasta <b>3 a 5 minutos</b> lendo texto que nem precisava. Faça o diagnóstico de 2 minutos e descubra se você está caindo nessa.</p>
   <p class="sub">Pra montar o seu plano, eu preciso de 2 informações. Sem isso, o resultado sai genérico e <b>não funciona pra quem sonha com o seu curso</b>. 👇</p>
   <div class="fields"><input id="in-n" type="text" placeholder="Como você se chama?" autocomplete="given-name"><input id="in-c" type="text" placeholder="Qual curso você vai conquistar? (ex: Medicina, Direito)"></div>
   <button class="btn off" id="go" disabled>QUERO MEU DIAGNÓSTICO GRÁTIS →</button>
@@ -184,7 +171,7 @@ const steps = [
   } }),
 
 /* 2 */
-() => Q('😰', 'Seja sincera: você abre a prova, vê aquele <b>textão de 30 linhas</b>... e o que passa na sua cabeça?',
+() => Q('😰', 'Seja sincera: você abre a prova, vê aquele <b>textão de 30 linhas</b> e gasta <b>3 a 5 minutos lendo tudo</b>... o que passa na sua cabeça?',
   'Quanto mais honesta a resposta, mais preciso o seu diagnóstico. 👇',
   [['📖', '“Meu Deus, vou ficar exausta antes de chegar na metade da prova”'], ['😵', '“Leio, leio e parece que nada entra. Não sei nem por onde começar”'], ['⏱️', '“Já começo a entrar em pânico com o relógio: não vai dar tempo”'], ['😅', '“Leio até rápido, mas erro a questão mesmo assim”']]),
 
@@ -195,13 +182,13 @@ const steps = [
 
 /* 4 */
 () => Q('🧠', 'Você estudou o ano inteiro... e na prova a banca <b>te enrola com as alternativas</b>. Isso já aconteceu com você?',
-  'Spoiler: <b>não é falta de estudo.</b> Tem um motivo, e a gente vai chegar nele. 👇',
+  'Spoiler: <b>não é falta de estudo.</b> A banca esconde a resposta no meio do textão, e tem um jeito de enxergar ela em segundos. 👇',
   [['😤', '“Direto! Parece que fazem de propósito pra me derrubar”'], ['😕', '“Com frequência. Eu sei a matéria, mas caio na pegadinha”'], ['🤨', '“Às vezes, geralmente quando o texto é longo”'], ['😅', '“Quase nunca, mas quando acontece, me custa a questão inteira”']]),
 
 /* 5 - empatia (barra) */
 () => ({ cls: 'blue', html: `<div class="inner" style="gap:26px"><div class="emo" style="font-size:5rem">😔</div>
   <p class="big">Eu sei exatamente o que você está sentindo, ${nome()}. 💔<br>Você estuda, se esforça, e o textão <u>drena toda a sua energia</u> enquanto o relógio corre contra você.</p>
-  <p class="txt">E a pior parte: <b>você não é a única.</b> ${CONFIG.PROVA_SOCIAL} estudantes me falaram a mesma coisa.</p>
+  <p class="txt">E a pior parte: enquanto você gasta <b>3 a 5 minutos</b> numa questão, tem gente resolvendo a mesma em <b>15 segundos</b>. Você não é a única: ${CONFIG.PROVA_SOCIAL} estudantes me falaram a mesma coisa.</p>
   <div style="width:100%"><div class="bar"><i></i></div><p class="micro" style="margin-top:12px">Estou analisando suas respostas... ⏳ (toque para continuar)</p></div></div>`,
   mount(card) { runBar(card, CONFIG.EMPATIA_MS); } }),
 
@@ -215,13 +202,13 @@ const steps = [
   <p class="big">O relógio não para. E o ENEM também não.</p>
   <div style="width:100%;display:flex;flex-direction:column;gap:8px"><div class="pill">📅 Hoje: ${new Date().toLocaleDateString('pt-BR')}</div><div class="pill">🎯 Dia da prova: ${CONFIG.DATA_ENEM_TXT}</div></div>
   <div class="cd"><p>Tempo que ainda te resta pra mudar sua nota:</p><div class="grid4"><div><b id="cd-d">0</b><span>DIAS</span></div><div><b id="cd-h">0</b><span>HORAS</span></div><div><b id="cd-m">0</b><span>MIN</span></div><div><b id="cd-s">0</b><span>SEG</span></div></div></div>
-  <p class="txt">Eu também <b>joguei pontos fora</b> lendo texto inútil e chutando as últimas questões no desespero. Até descobrir a verdade: <b>o problema nunca foi falta de estudo.</b> Era falta de estratégia pra ler só o que importa. 💡</p>
+  <p class="txt">Quem passa na sua frente <b>não estuda mais que você</b>. Só sabe que a questão <b>já entrega a resposta em 2 ou 3 palavras-chave</b>. O problema nunca foi falta de estudo. <b>Era falta do macete certo.</b> 💡</p>
   <div style="width:100%"><div class="bar"><i></i></div><p class="micro" style="margin-top:10px;color:rgba(255,255,255,.8)">Preparando seu diagnóstico... ⏳ (toque para continuar)</p></div></div>`,
   mount(card) { startCountdown(); runBar(card, CONFIG.URGENCIA_MS); } }),
 
 /* 8 */
-() => Q('⚡', 'Imagina descobrir a resposta certa <b>batendo o olho em 2 ou 3 palavras do enunciado</b>... sem ler o textão inteiro.<br><br>O que isso mudaria na sua prova?',
-  'Isso existe. E a banca <b>torce pra você nunca descobrir.</b> 👇',
+() => Q('⚡', 'Imagina bater o olho numa questão que pergunta sobre <b>crônica</b>, ver a palavra-chave certa e marcar a resposta em <b>15 segundos</b>... sem ler o textão inteiro.<br><br>O que isso mudaria na sua prova?',
+  'Isso existe. São mais de <b>3.200 palavras-chave</b> mapeadas, e a banca <b>torce pra você nunca descobrir.</b> 👇',
   [['😍', '“Salvaria minha nota, e ainda sobraria tempo pra redação!”'], ['😲', '“Seria um sonho: eu acabaria com as rasteiras das pegadinhas”'], ['🤔', '“Eu quero muito, mas será que isso funciona de verdade?”'], ['🔥', '“Eu precisava disso ontem. Quero ver como funciona”']]),
 
 /* 9 */
@@ -246,23 +233,25 @@ const steps = [
 /* 12 - virada */
 () => ({ cls: 'dark', html: `<div class="inner" style="gap:20px"><div class="emo">👀</div>
   <h2>${nome()}, agora vou te falar a real.</h2>
-  <p class="sub" style="text-align:left;width:100%">Se você continuar do jeito que está...<br><br>❌ lendo textão até cansar<br>❌ caindo nas pegadinhas da banca<br>❌ perdendo a briga contra o relógio<br><br><b>...aquela tela de aprovação ${cursoEm()} vai continuar sendo só um sonho.</b> 💔</p>
-  <p class="sub">Mas <b>não precisa ser assim.</b><br><br>Eu fiz <b>140 acertos</b> e passei na <b>Federal</b> direto do ensino médio usando um <b>padrão de gatilhos nas questões</b>.<br><br>E eu vou te mostrar <b>exatamente qual é.</b></p>
-  <button class="btn fire" id="nx">SIM, QUERO VER O PADRÃO AGORA →</button>
+  <p class="sub" style="text-align:left;width:100%">Se você continuar do jeito que está...<br><br>❌ lendo textão que você nem precisava ler<br>❌ gastando 3 a 5 minutos numa questão de 15 segundos<br>❌ caindo nas pegadinhas da banca<br><br><b>...aquela tela de aprovação ${cursoEm()} vai continuar sendo só um sonho.</b> 💔</p>
+  <p class="sub">Mas <b>não precisa ser assim.</b><br><br>Eu fiz <b>140 acertos</b> e passei na <b>Federal</b> direto do ensino médio usando <b>palavras-chave</b>: mais de <b>3.200</b>, de todas as matérias, + <b>600 questões do ENEM (2009 a 2025)</b> resolvidas na prática.<br><br>E eu vou te mostrar <b>exatamente como funciona.</b></p>
+  <button class="btn fire" id="nx">SIM, QUERO VER AS PALAVRAS-CHAVE AGORA →</button>
   <p class="micro">▶️ Vídeo rápido, direto ao ponto. Sem enrolação.</p></div>`,
   mount() { document.getElementById('nx').onclick = next; } }),
 
 /* 13 - VSL */
 () => ({ cls: 'dark', html: `<div class="inner" style="gap:18px;justify-content:flex-start;padding-top:8px">
   <p class="txt">${nome()}, assista até o final: <b>seu presente especial é liberado no vídeo.</b> 🎁</p>
-  <p class="sub">E foi assim que eu ajudei mais de 12.000 pessoas pelo Brasil todo a identificar a resposta certa no ENEM em segundos.</p>
+  <p class="sub">E foi assim que eu ajudei mais de 12.000 pessoas pelo Brasil todo a identificar a resposta certa no ENEM pela palavra-chave, em segundos.</p>
   <div class="vsl" id="vsl-box"></div>
   <p class="micro">🔊 Ative o som para não perder nada.</p></div>`,
   mount() {
     const box = document.getElementById('vsl-box');
-    box.innerHTML = `<vturb-smartplayer id="vid-${CONFIG.VSL_ID}" style="display:block;margin:0 auto;width:100%;max-width:400px"></vturb-smartplayer>`;
+    const pid = CONFIG.VSL_ID;
+    box.innerHTML = `<div id="ifr_${pid}_wrapper" style="margin:0 auto;width:100%;max-width:400px"><div style="position:relative;padding:178.21782178217822% 0 0 0" id="ifr_${pid}_aspect"><iframe frameborder="0" allowfullscreen id="ifr_${pid}" style="position:absolute;top:0;left:0;width:100%;height:100%" referrerpolicy="origin"></iframe></div></div>`;
+    document.getElementById('ifr_' + pid).src = `https://scripts.converteai.net/${CONFIG.VSL_OID}/players/${pid}/v4/embed.html` + (location.search || '?') + '&vl=' + encodeURIComponent(location.href);
     const s = document.createElement('script');
-    s.src = `https://scripts.converteai.net/${CONFIG.VSL_OID}/players/${CONFIG.VSL_ID}/v4/player.js`;
+    s.src = 'https://scripts.converteai.net/lib/js/smartplayer-wc/v4/sdk.js';
     s.async = true; document.head.appendChild(s);
   } })
 ];
